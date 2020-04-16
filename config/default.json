@@ -1,4 +1,7 @@
 {
+    "apis": {
+        "getCountries": "https://api.covid19api.com/countries"
+    },
     "dbConfig": {
         "host": "127.0.0.1",
         "port": 27017,
