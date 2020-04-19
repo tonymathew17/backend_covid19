@@ -15,13 +15,16 @@ const saveUser = userDoc => {
 
 const getUsers = () => {
     return new Promise((resolve, reject) => {
-        User.find()
-            .then(res => {
-                resolve(res);
-            })
-            .catch(err => {
-                reject(err);
-            });
+        setTimeout(() => {
+            resolve('Result after 20 seconds');
+         }, 2000);
+        /*         User.find()
+                    .then(res => {
+                        resolve(res);
+                    })
+                    .catch(err => {
+                        reject(err);
+                    }); */
     });
 }
 

@@ -3,7 +3,7 @@ const apis = require('config').apis;
 const helper = require('./helper');
 
 const getAffectedCountries = () => {
-    const url = apis.getCountries;
+    const uri = apis.getCountries;
     const options = {
         method: "GET",
         uri: apis.getCountries,
@@ -12,7 +12,7 @@ const getAffectedCountries = () => {
     return new Promise((resolve, reject) => {
         request(options, (err, res, body) => {
             if (err) {
-                console.error(`There was an error calling the api ${url}: ${err}`);
+                console.error(`There was an error calling the api ${uri}: ${err}`);
                 reject(helper.makeResponseObj(500, err));
                 return;
             }
@@ -21,6 +21,29 @@ const getAffectedCountries = () => {
 
     });
 };
+
+const getCountryDetails = (country) => {
+    let uri = apis.getCountry;
+    uri += country;
+
+    const options = {
+        method: 'GET',
+        uri,
+        json: true
+    }
+
+    return new Promise((resolve, reject) => {
+        request(options, (err, res, body) => {
+            if (err) {
+                console.error(`There was an error calling the api ${uri}: ${err}`);
+                reject(helper.makeResponseObj(500, err));
+                return;
+            }
+            resolve(body);
+        });
+    });
+};
 module.exports = {
-    getAffectedCountries
+    getAffectedCountries,
+    getCountryDetails
 }
